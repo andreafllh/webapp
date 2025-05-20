@@ -35,7 +35,7 @@ if (isset($token_result) && $token_result === true): ?>
       <input type="submit" value="resste password ">
     </form>
 <?php else: ?>
-    <div class="error">The provided token is not valid</div>
+    <div class="error">The provided token is not valid please go back</div>
 <?php endif; ?>
 
 <?php
