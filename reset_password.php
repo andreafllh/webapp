@@ -35,7 +35,7 @@ if (isset($token_result) && $token_result === true): ?>
       <input type="submit" value="تغییر رمز عبور ">
     </form>
 <?php else: ?>
-    <div class="error">The provided token is not valid please go back</div>
+    <div class="error">The provided token is not valid please go to the panel page</div>
 <?php endif; ?>
 
 <?php
