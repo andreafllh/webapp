@@ -32,7 +32,7 @@ if (isset($token_result) && $token_result === true): ?>
         <input type="password" name="confirm" required>
       </div>
 
-      <input type="submit" value="resste password ">
+      <input type="submit" value="تغییر رمز عبور ">
     </form>
 <?php else: ?>
     <div class="error">The provided token is not valid please go back</div>
