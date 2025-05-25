@@ -1,8 +1,9 @@
 
 <?php
+session_start();
 // چک می‌کنیم که کوکی لاگین وجود داره یا نه
-$is_logged = $_COOKIE['is_logged'] ?? null;
-$username = $_COOKIE['username'] ?? null;
+$is_logged = $_SESSION['is_logged'] ?? null;
+$username = $_SESSION['username'] ?? null;
 
 if ($is_logged !== 'true' || empty($username)) {
     // اگر کاربر وارد نشده باشه، به صفحه ورود هدایت میشه

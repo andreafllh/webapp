@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
@@ -6,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // مقادیر تستی
     if ($username === 'andria' && $password === '1234') {
-        setcookie('is_logged', 'true', time() + 3600, '/');
-        setcookie('username', $username, time() + 3600, '/');
-
+        $_SESSION['is_logged'] = true;
+         $_SESSION['username'] = $username;
+       
         header("Location: /user_panel.php");
         exit;
     } else {
@@ -98,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($username)) {
     echo "<p class='footer'><a href='/forget_password.php?username='.$username.''>رمزتان را فراموش کردین؟</a></p>";
        } else {
-    echo '<a href="/forget_password.php">رمزتان را فراموش کردین؟</a>';
+    echo "<p class='footer'><a href='/forget_password.php?username=$username'>رمزتان را فراموش کردین؟</a></p>";
 }
 ?>
       <p><a href="reset_password.php"> ریست پسوورد</a></p>
