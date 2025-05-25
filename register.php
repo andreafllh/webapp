@@ -1,8 +1,8 @@
 
 <?php
 include 'header.php';
-include 'statics/db.php';
-include __DIR__ . 'statics/db.php';
+include 'db.php';
+include __DIR__ . '/db.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div><input type="email" name="email" placeholder="ایمیل" required></div>
   <input type="submit" value="ثبت‌نام">
 
-  <a href='statics/login.php'>you have already an account</a>
+  <a href='/login.php'>you have already an account</a>
 </form>
 
 <?php

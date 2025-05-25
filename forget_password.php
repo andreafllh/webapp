@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-include __DIR__ . '/statics/db.php';
+include __DIR__ . '/db.php';
 include __DIR__ . '/function.php';
 
 $message = '';

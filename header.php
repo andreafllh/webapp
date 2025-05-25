@@ -11,5 +11,5 @@
 <nav>
   <a href="#">خانه</a>
   <a href="#">درباره</a>
-  <a href="/statics/login.php">ورود</a>
+  <a href="/login.php">ورود</a>
 </nav>

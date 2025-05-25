@@ -127,7 +127,7 @@ if (array_key_exists('msg', $_GET)) {
     deleteCookie('is_logged');
     deleteCookie('username');
     setTimeout(() => {
-      window.location.href = 'statics/login.php';  // رفتن به صفحه ورود
+      window.location.href = '/login.php';  // رفتن به صفحه ورود
     }, 500);
   }
 </script>

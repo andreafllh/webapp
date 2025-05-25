@@ -6,10 +6,10 @@ $username = $_COOKIE['username'] ?? null;
 
 if ($is_logged !== 'true' || empty($username)) {
     // اگر کاربر وارد نشده باشه، به صفحه ورود هدایت میشه
-    $login_link = '<a href="/statics/login.php">ورود</a>';
+    $login_link = '<a href="/login.php">ورود</a>';
 } else {
     // اگر وارد شده باشه، نام کاربری نمایش داده میشه
-    $login_link = '<a href="/statics/login.php">خروج (' . htmlspecialchars($username) . ')</a>';
+    $login_link = '<a href="/login.phplogin.php">خروج (' . htmlspecialchars($username) . ')</a>';
 }
 ?>
 
