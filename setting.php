@@ -1,9 +1,11 @@
 <?php
 include __DIR__ . '/db.php';
 session_start();
-// چک می‌کنیم که کوکی لاگین وجود داره یا نه
+
+
 $is_logged = $_SESSION['is_logged'] ?? null;
 $username = $_SESSION['username'] ?? null;
+$user_id = $_SESSION['user_id'] ?? null;
 
 if (!$is_logged || empty($username)) {
 
@@ -13,6 +15,8 @@ if (!$is_logged || empty($username)) {
     // اگر وارد شده باشه، نام کاربری نمایش داده میشه
     $login_link = '<a href="login.php">خروج (' . htmlspecialchars($username) . ')</a>';
 }
+if (!isset($_SESSION['user_id'])) {
+    
 
 try {
             
@@ -25,7 +29,8 @@ try {
     } catch (mysqli_sql_exception $e) {
             $error = "خطا در ثبت‌نام: " . $e->getMessage();
         }
-    
+        
+      }
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +77,28 @@ try {
     .post h2 {
       margin-top: 0;
     }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    form button {
+      background-color: #0077cc;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    form button:hover {
+      background-color: #005fa3;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -94,7 +121,38 @@ try {
     <a href="#">خانه</a>
     <a href="setting.php">تنظیمات</a>
     <?php echo $login_link; ?>
-  
+  </nav>
+
+  <div class="container">
+    <div class="post">
+      <h2>فرم ویرایش اطلاعات</h2>
+     <form action="update_user.php" method="POST">
+    <input type="hidden" name="user_id" value="<?= $user_information['user_id']; ?>">
+
+    <label for="first_name">اسم:</label>
+    <input type="text" id="first_name" name="first_name"value="<?= $user_information['first_name']; ?> required>
+
+    <label for="last_name">فامیل:</label>
+    <input type="text" id="last_name" name="last_name"value="<?= $user_information['last_name']; ?> required>
+
+    <label for="username">نام کاربری جدید:</label>
+    <input type="text" id="username" name="username" value="<?= $user_information['username']; ?>disabled>
+
+    <label for="email">ایمیل:</label>
+    <input type="email" id="email" name="email"value="<?= $user_information['email']; ?> disabled>
+
+    <label for="password">رمز عبور جدید:</label>
+    <input type="password" id="password" name="password" placeholder="خالی بگذارید اگر نمی‌خواهید تغییر دهید">
+
+    <label for="bio">بایو:</label>
+    <textarea id="bio" name="bio" value="<?= $user_information['bio']; ?> rows="4" placeholder="توضیحاتی درباره‌ی خودتان..."></textarea>
+
+    <button type="submit">ذخیره تغییرات</button>
+</form>
+
+    </div>
+  </div>
+
   <footer>
     © 2025 وبلاگ اندرِیا — همه‌ی حقوق محفوظ است.
   </footer>

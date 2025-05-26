@@ -4,12 +4,16 @@ include 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
+ 
+
 
     // مقادیر تستی
     if ($username && $password) {
  
         $_SESSION['is_logged'] = true;
          $_SESSION['username'] = $username;
+ // آیدی تستی یا از دیتابیس واقعی بگیر بعداً
+
        
         header("Location: /user_panel.php");
         exit;
@@ -18,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "نام کاربری یا رمز اشتباه است!"; // اضافه کردن خطای ناشی از ورود نامعتبر
          $username = $_POST['username'];
       }
+
 }
 ?>
 
