@@ -1,5 +1,5 @@
-
 <?php
+include __DIR__ . '/db.php';
 session_start();
 // چک می‌کنیم که کوکی لاگین وجود داره یا نه
 $is_logged = $_SESSION['is_logged'] ?? null;
@@ -13,6 +13,19 @@ if (!$is_logged || empty($username)) {
     // اگر وارد شده باشه، نام کاربری نمایش داده میشه
     $login_link = '<a href="login.php">خروج (' . htmlspecialchars($username) . ')</a>';
 }
+
+try {
+            
+            $sql = "SELECT * FROM `users` WHERE user_id = " . $_SESSION['user_id'];
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+
+            print_r($row);
+
+    } catch (mysqli_sql_exception $e) {
+            $error = "خطا در ثبت‌نام: " . $e->getMessage();
+        }
+    
 ?>
 
 <!DOCTYPE html>
@@ -74,27 +87,14 @@ if (!$is_logged || empty($username)) {
 
   <header>
     <h1>وبلاگ اندرِیا</h1>
-    <p>اینجا جاییه برای نوشتن و یاد گرفتن...</p>
+    <p>تنظیمات پنل کاربری</p>
   </header>
 
   <nav>
     <a href="#">خانه</a>
     <a href="setting.php">تنظیمات</a>
     <?php echo $login_link; ?>
-  </nav>
-
-  <div class="container">
-    <div class="post">
-      <h2>اولین پست من</h2>
-      <p>سلام دنیا! این اولین پست منه توی وبلاگ. قراره اینجا چیزای باحال بنویسم درباره‌ی ترید، امنیت و کد زدن!</p>
-    </div>
-
-    <div class="post">
-      <h2>پست دوم</h2>
-      <p>امروز داشتم Apache و PHP رو روی مک نصب می‌کردم. با چند تا خطا مواجه شدم اما یاد گرفتم چطوری کنترلشون کنم...</p>
-    </div>
-  </div>
-
+  
   <footer>
     © 2025 وبلاگ اندرِیا — همه‌ی حقوق محفوظ است.
   </footer>

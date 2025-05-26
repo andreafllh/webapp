@@ -6,12 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     // مقادیر تستی
-    if ($username === 'andria' && $password === '1234') {
+    if ($username && $password) {
+ 
         $_SESSION['is_logged'] = true;
          $_SESSION['username'] = $username;
        
         header("Location: /user_panel.php");
         exit;
+
     } else {
         $error = "نام کاربری یا رمز اشتباه است!"; // اضافه کردن خطای ناشی از ورود نامعتبر
          $username = $_POST['username'];
@@ -95,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p class="footer">اگر حسابی ندارید <a href="/register.php">ثبت‌نام کنید</a></p>
    
     <?php 
+   
+      $username = "";
      $message = "";
     if (isset($username)) {
     echo "<p class='footer'><a href='/forget_password.php?username='.$username.''>رمزتان را فراموش کردین؟</a></p>";

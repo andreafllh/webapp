@@ -2,7 +2,8 @@
 $host = 'localhost';     // آدرس سرور دیتابیس
 $user = 'root';          // نام کاربری دیتابیس
 $password = 'ria1998';          // رمز عبور دیتابیس
-$database = 'blog_db';     // نام دیتابیس
+$database = 'blog_db'; 
+$user_id ='';    // نام دیتابیس
 
 // ایجاد اتصال
 $conn = new mysqli($host, $user, $password, $database);
