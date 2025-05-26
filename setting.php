@@ -8,13 +8,45 @@ $username = $_SESSION['username'] ?? null;
 $user_id = $_SESSION['user_id'] ?? null;
 
 if (!$is_logged || empty($username)) {
-
-    // اگر کاربر وارد نشده باشه، به صفحه ورود هدایت میشه
+    // اگر کاربر وارد نشده باشه، 
     $login_link = '<a href="login.php">ورود</a>';
 } else {
     // اگر وارد شده باشه، نام کاربری نمایش داده میشه
     $login_link = '<a href="login.php">خروج (' . htmlspecialchars($username) . ')</a>';
+    
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $user_id = $_POST['user_id'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $password = $_POST['password'];
+    $bio = $_POST['bio'];
+     
+
+    if ($password === ""){
+                 $sql = "UPDATE INTO 'users' (first_name, last_name, bio) VALUES ('$first_name', '$last_name', 'bio') WHERE 'user_id' = " .intval($user_id);
+
+    } else {
+ $sql = "UPDATE INTO 'users' (first_name, last_name, bio, password ) VALUES ('$first_name', '$last_name', '$bio', '$password) WHERE 'user_id' = " .intval($user_id);
+
+    }
+
+      try {
+            
+            $result = mysqli_query($conn, $sql);
+
+            if ($result === true) {
+                header("Location: /setting.php?msg= پنل با موفقیت اپدیت  شد");
+              
+            }
+        } catch (mysqli_sql_exception $e) {
+            $error = "خطا در آپدیت : " . $e->getMessage();
+        }
+        exit;
+}
+
+
 if (!isset($_SESSION['user_id'])) {
     
 
